@@ -1,0 +1,34 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 720,
+  "height": 440,
+  "config": { "view": { "stroke": null } },
+  "data": {
+    "url": "malaysia_states.geojson",
+    "format": { "type": "json", "property": "features" }
+  },
+  "transform": [
+    {
+      "lookup": "properties.name",
+      "from": {
+        "data": { "url": "state_data.csv" },
+        "key": "state",
+        "fields": ["median_income", "poverty_rate", "unemployment_rate"]
+      }
+    }
+  ],
+  "projection": { "type": "mercator" },
+  "mark": { "type": "geoshape", "stroke": "white", "strokeWidth": 0.6 },
+  "encoding": {
+    "color": {
+      "field": "poverty_rate",
+      "type": "quantitative",
+      "scale": { "scheme": "oranges" },
+      "title": "Poverty rate (%)"
+    },
+    "tooltip": [
+      { "field": "properties.name", "type": "nominal", "title": "State" },
+      { "field": "poverty_rate", "type": "quantitative", "title": "Poverty (%)" }
+    ]
+  }
+}

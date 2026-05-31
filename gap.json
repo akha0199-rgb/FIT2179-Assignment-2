@@ -1,0 +1,21 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 600,
+  "height": 420,
+  "data": { "url": "state_data.csv" },
+  "transform": [
+    { "joinaggregate": [{ "op": "mean", "field": "unemployment_rate", "as": "avg" }] },
+    { "calculate": "datum.unemployment_rate - datum.avg", "as": "gap" }
+  ],
+  "mark": { "type": "bar", "cornerRadius": 2 },
+  "encoding": {
+    "y": { "field": "state", "type": "nominal", "sort": { "field": "gap", "order": "descending" }, "title": null },
+    "x": { "field": "gap", "type": "quantitative", "title": "Difference from the national average unemployment (percentage points)" },
+    "color": { "field": "gap", "type": "quantitative", "scale": { "scheme": "redyellowblue", "reverse": true, "domainMid": 0 }, "legend": null },
+    "tooltip": [
+      { "field": "state", "type": "nominal" },
+      { "field": "unemployment_rate", "type": "quantitative", "title": "Unemployment (%)" },
+      { "field": "gap", "type": "quantitative", "title": "Gap (pp)", "format": "+.1f" }
+    ]
+  }
+}

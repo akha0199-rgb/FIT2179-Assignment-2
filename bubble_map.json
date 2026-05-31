@@ -1,0 +1,31 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 720,
+  "height": 440,
+  "config": { "view": { "stroke": null } },
+  "projection": { "type": "mercator" },
+  "layer": [
+    {
+      "data": { "url": "malaysia_states.geojson", "format": { "type": "json", "property": "features" } },
+      "mark": { "type": "geoshape", "fill": "#eef0ee", "stroke": "white", "strokeWidth": 0.6 }
+    },
+    {
+      "data": { "url": "state_data.csv" },
+      "mark": { "type": "circle", "color": "#e0683a", "opacity": 0.75, "stroke": "white", "strokeWidth": 0.5 },
+      "encoding": {
+        "longitude": { "field": "lon", "type": "quantitative" },
+        "latitude": { "field": "lat", "type": "quantitative" },
+        "size": {
+          "field": "poverty_rate",
+          "type": "quantitative",
+          "scale": { "range": [0, 2000] },
+          "title": "Poverty rate (%)"
+        },
+        "tooltip": [
+          { "field": "state", "type": "nominal", "title": "State" },
+          { "field": "poverty_rate", "type": "quantitative", "title": "Poverty (%)" }
+        ]
+      }
+    }
+  ]
+}

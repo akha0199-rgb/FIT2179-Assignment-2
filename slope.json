@@ -1,0 +1,23 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 220,
+  "height": 420,
+  "data": { "url": "lfs_qtr_state.csv" },
+  "transform": [
+    { "calculate": "year(toDate(datum.date))", "as": "yr" },
+    { "filter": "datum.yr == 2017 || datum.yr == 2025" },
+    { "aggregate": [{ "op": "mean", "field": "u_rate", "as": "u" }], "groupby": ["state", "yr"] }
+  ],
+  "mark": { "type": "line", "point": true },
+  "encoding": {
+    "x": { "field": "yr", "type": "ordinal", "title": null, "axis": { "labelAngle": 0 } },
+    "y": { "field": "u", "type": "quantitative", "title": "Unemployment rate (%)" },
+    "color": { "field": "state", "type": "nominal", "legend": null },
+    "detail": { "field": "state", "type": "nominal" },
+    "tooltip": [
+      { "field": "state", "type": "nominal" },
+      { "field": "yr", "type": "ordinal", "title": "Year" },
+      { "field": "u", "type": "quantitative", "title": "Unemployment (%)", "format": ".1f" }
+    ]
+  }
+}

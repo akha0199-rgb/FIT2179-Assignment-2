@@ -1,0 +1,17 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 360,
+  "data": { "url": "lfs_qtr_state.csv" },
+  "mark": "area",
+  "encoding": {
+    "x": { "field": "date", "type": "temporal", "title": "Year" },
+    "y": { "field": "lf_unemployed", "type": "quantitative", "stack": "center", "axis": null, "title": "Unemployed (thousands)" },
+    "color": { "field": "state", "type": "nominal", "scale": { "scheme": "tableau20" }, "legend": { "title": "State" } },
+    "tooltip": [
+      { "field": "state", "type": "nominal" },
+      { "field": "date", "type": "temporal", "timeUnit": "yearquarter", "title": "Quarter" },
+      { "field": "lf_unemployed", "type": "quantitative", "title": "Unemployed (k)" }
+    ]
+  }
+}

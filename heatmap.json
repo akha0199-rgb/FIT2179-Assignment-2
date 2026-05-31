@@ -1,0 +1,33 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 380,
+  "data": { "url": "lfs_qtr_state.csv" },
+  "mark": "rect",
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "ordinal",
+      "timeUnit": "year",
+      "title": "Year"
+    },
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "title": null,
+      "sort": { "field": "u_rate", "op": "mean", "order": "descending" }
+    },
+    "color": {
+      "field": "u_rate",
+      "aggregate": "mean",
+      "type": "quantitative",
+      "scale": { "scheme": "reds" },
+      "title": "Unemployment (%)"
+    },
+    "tooltip": [
+      { "field": "state", "type": "nominal", "title": "State" },
+      { "field": "date", "timeUnit": "year", "title": "Year" },
+      { "field": "u_rate", "aggregate": "mean", "type": "quantitative", "title": "Avg unemployment (%)", "format": ".1f" }
+    ]
+  }
+}

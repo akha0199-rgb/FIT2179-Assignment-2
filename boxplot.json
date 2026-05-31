@@ -1,0 +1,12 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 680,
+  "height": 400,
+  "data": { "url": "lfs_qtr_state.csv" },
+  "mark": { "type": "boxplot", "extent": "min-max" },
+  "encoding": {
+    "x": { "field": "u_rate", "type": "quantitative", "title": "Unemployment rate (%), spread across 2017-2025" },
+    "y": { "field": "state", "type": "nominal", "title": null, "sort": { "field": "u_rate", "op": "median", "order": "descending" } },
+    "color": { "field": "state", "type": "nominal", "legend": null }
+  }
+}

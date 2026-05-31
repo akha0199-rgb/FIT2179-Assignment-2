@@ -1,0 +1,24 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 420,
+  "data": { "url": "lfs_qtr_state.csv" },
+  "transform": [
+    { "calculate": "year(toDate(datum.date))", "as": "yr" },
+    { "aggregate": [{ "op": "mean", "field": "u_rate", "as": "u" }], "groupby": ["state", "yr"] },
+    { "window": [{ "op": "rank", "as": "rank" }], "sort": [{ "field": "u", "order": "descending" }], "groupby": ["yr"] }
+  ],
+  "mark": { "type": "line", "point": true },
+  "encoding": {
+    "x": { "field": "yr", "type": "ordinal", "title": "Year", "axis": { "labelAngle": 0 } },
+    "y": { "field": "rank", "type": "quantitative", "scale": { "reverse": true }, "title": "Rank (1 = highest unemployment)" },
+    "color": { "field": "state", "type": "nominal", "legend": null },
+    "detail": { "field": "state", "type": "nominal" },
+    "tooltip": [
+      { "field": "state", "type": "nominal" },
+      { "field": "yr", "type": "ordinal", "title": "Year" },
+      { "field": "rank", "type": "quantitative" },
+      { "field": "u", "type": "quantitative", "title": "Unemployment (%)", "format": ".1f" }
+    ]
+  }
+}

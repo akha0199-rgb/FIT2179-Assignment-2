@@ -1,0 +1,29 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 560,
+  "height": 420,
+  "data": { "url": "state_data.csv" },
+  "layer": [
+    {
+      "mark": { "type": "point", "filled": true, "size": 130, "opacity": 0.85 },
+      "encoding": {
+        "x": { "field": "median_income", "type": "quantitative", "title": "Median income (RM/month)", "scale": { "zero": false } },
+        "y": { "field": "poverty_rate", "type": "quantitative", "title": "Poverty rate (%)" },
+        "color": { "field": "region", "type": "nominal", "scale": { "range": ["#0e7c86", "#e0683a"] } },
+        "tooltip": [
+          { "field": "state", "type": "nominal" },
+          { "field": "median_income", "type": "quantitative", "title": "Income (RM)" },
+          { "field": "poverty_rate", "type": "quantitative", "title": "Poverty (%)" }
+        ]
+      }
+    },
+    {
+      "mark": { "type": "text", "dx": 7, "align": "left", "fontSize": 9, "color": "#5a6b70" },
+      "encoding": {
+        "x": { "field": "median_income", "type": "quantitative" },
+        "y": { "field": "poverty_rate", "type": "quantitative" },
+        "text": { "field": "state", "type": "nominal" }
+      }
+    }
+  ]
+}

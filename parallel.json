@@ -1,0 +1,23 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 560,
+  "height": 400,
+  "data": { "url": "state_data.csv" },
+  "transform": [
+    { "fold": ["median_income", "poverty_rate", "unemployment_rate"], "as": ["measure", "value"] },
+    { "joinaggregate": [{ "op": "min", "field": "value", "as": "lo" }, { "op": "max", "field": "value", "as": "hi" }], "groupby": ["measure"] },
+    { "calculate": "(datum.value - datum.lo) / (datum.hi - datum.lo)", "as": "norm" }
+  ],
+  "mark": { "type": "line", "opacity": 0.6, "point": true },
+  "encoding": {
+    "x": { "field": "measure", "type": "nominal", "title": null, "sort": ["median_income", "poverty_rate", "unemployment_rate"] },
+    "y": { "field": "norm", "type": "quantitative", "title": "Scaled value (0 = lowest, 1 = highest)" },
+    "color": { "field": "region", "type": "nominal", "scale": { "range": ["#0e7c86", "#e0683a"] } },
+    "detail": { "field": "state", "type": "nominal" },
+    "tooltip": [
+      { "field": "state", "type": "nominal" },
+      { "field": "measure", "type": "nominal" },
+      { "field": "value", "type": "quantitative" }
+    ]
+  }
+}

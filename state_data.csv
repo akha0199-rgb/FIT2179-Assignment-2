@@ -1,0 +1,17 @@
+state,region,median_income,poverty_rate,unemployment_rate,lon,lat
+Federal Territory of Kuala Lumpur,Peninsular,10234,1.4,3.2,101.6823,3.1389
+Federal Territory of Putrajaya,Peninsular,10056,0.1,1.4,101.6896,2.9259
+Selangor,Peninsular,9983,1.5,1.8,101.4739,3.2318
+Labuan,East,6904,2.5,4.7,,
+Johor,Peninsular,6879,4.6,2.5,103.3116,2.0458
+Penang,Peninsular,6502,2.0,2.7,100.2516,5.3622
+Melaka,Peninsular,6210,4.2,2.4,102.2907,2.3051
+Terengganu,Peninsular,5878,6.2,2.9,103.0046,4.8645
+Negeri Sembilan,Peninsular,5226,4.4,3,102.2253,2.8496
+Sarawak,East,4978,10.8,3.1,113.5232,2.8854
+Pahang,Peninsular,4753,6.3,1.7,102.6004,3.6196
+Perlis,Peninsular,4713,4.0,3.2,100.2626,6.5091
+Sabah,East,4577,19.7,5.7,117.2708,5.5504
+Perak,Peninsular,4494,7.5,3.7,100.9865,4.7971
+Kedah,Peninsular,4402,9.0,2.4,100.6821,5.8175
+Kelantan,Peninsular,3614,13.2,4.6,102.0694,5.4002

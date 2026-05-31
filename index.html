@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Malaysia's Regional Divide</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+  <style>
+    body { font-family: "IBM Plex Sans", sans-serif; color: #10242b; background: #fbfaf7;
+           max-width: 880px; margin: 0 auto; padding: 24px; line-height: 1.65; }
+    h1 { font-family: "Fraunces", serif; font-size: 2.8rem; font-weight: 900; line-height: 1.1; margin-bottom: .2em; }
+    h2 { font-family: "Fraunces", serif; font-size: 1.7rem; font-weight: 600; margin-bottom: .1em; }
+    .lede { font-size: 1.2rem; color: #5a6b70; max-width: 60ch; }
+    section { padding: 2.4rem 0; border-bottom: 1px solid #e6e2d8; }
+    section p { max-width: 65ch; }
+    .vis { background: #fff; border: 1px solid #e6e2d8; border-radius: 8px; padding: 14px; margin-top: 1rem; }
+    .kicker { font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; color: #0e7c86; font-weight: 600; margin-bottom: .4em; }
+    footer { padding: 2.5rem 0; color: #5a6b70; font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <header style="padding:3rem 0 1rem;">
+    <h1>Malaysia's Regional Divide</h1>
+    <p class="lede">Where you are born in Malaysia shapes how much you earn, how likely you are to be poor,
+    and how easily you can find work. This page maps that divide across the country's 16 states and territories.</p>
+  </header>
+
+  <!-- CHART 1 -->
+  <section>
+    <p class="kicker">Income</p>
+    <h2>Where the money is</h2>
+    <p>Income is concentrated in the Klang Valley. Kuala Lumpur, Putrajaya and Selangor record the highest
+    median household incomes, all above RM9,900 a month, shown by the darkest states. The further you move
+    from this core, especially toward the east coast and East Malaysia, the lighter the map becomes, bottoming
+    out in Kelantan at around RM3,600.</p>
+    <div class="vis" id="chart1"></div>
+  </section>
+
+  <!-- CHART 2 -->
+  <section>
+    <p class="kicker">Poverty</p>
+    <h2>Where poverty hits hardest</h2>
+    <p>Poverty mirrors that pattern in reverse. The largest bubbles sit over Sabah (19.7%), Kelantan (13.2%)
+    and Sarawak (10.8%), while the Klang Valley states almost vanish. Sabah's poverty rate is more than ten
+    times Selangor's.</p>
+    <div class="vis" id="chart2"></div>
+  </section>
+
+  <!-- CHART 3 -->
+  <section>
+    <p class="kicker">Jobs over time</p>
+    <h2>Unemployment, year by year</h2>
+    <p>Unemployment tells a similar regional story across time. Each row is a state and each column a year;
+    redder cells mean more people out of work. The darker vertical band around 2020 marks the pandemic shock,
+    when joblessness climbed in every state at once.</p>
+    <div class="vis" id="chart3"></div>
+  </section>
+
+  <!-- CHART 4 -->
+  <section>
+    <p class="kicker">Recovery</p>
+    <h2>Did things improve? 2017 versus 2025</h2>
+    <p>Most states have recovered since the pandemic. Comparing 2017 with 2025, the lines for the majority
+    slope gently downward or hold steady, but a few, led by Sabah, remain stubbornly higher than where they
+    began.</p>
+    <div class="vis" id="chart4"></div>
+  </section>
+
+  <!-- CHART 5 -->
+  <section>
+    <p class="kicker">Persistence</p>
+    <h2>Who stays at the top of the queue</h2>
+    <p>Ranking the states each year shows the divide is persistent, not a one-off. Sabah sits near the top of
+    the unemployment ranking almost every year, while Selangor and Pahang stay near the bottom.</p>
+    <div class="vis" id="chart5"></div>
+  </section>
+
+  <!-- CHART 6 -->
+  <section>
+    <p class="kicker">Scale</p>
+    <h2>The shape of unemployment over time</h2>
+    <p>Seen as a flowing whole, the total number of unemployed Malaysians swelled sharply around 2020 before
+    narrowing again. The thickness of each band shows how much each state contributed, with the larger states
+    naturally accounting for the most people.</p>
+    <div class="vis" id="chart6"></div>
+  </section>
+
+  <!-- CHART 7 -->
+  <section>
+    <p class="kicker">Volatility</p>
+    <h2>How much each state swings</h2>
+    <p>Some states are far steadier than others. This shows the spread of each state's quarterly unemployment
+    from 2017 to 2025: a wide box means the rate swung a lot, a narrow one means it stayed stable. Sabah and
+    Labuan are both the highest and the most variable.</p>
+    <div class="vis" id="chart7"></div>
+  </section>
+
+  <!-- CHART 8 -->
+  <section>
+    <p class="kicker">All together</p>
+    <h2>Three measures at once</h2>
+    <p>Pulling the three measures together, each line is one state across income, poverty and unemployment,
+    scaled from lowest to highest. The healthiest states stay low on poverty and unemployment but high on
+    income; the lines that climb from low income to high poverty trace the states being left behind.</p>
+    <div class="vis" id="chart8"></div>
+  </section>
+
+  <!-- CHART 9 -->
+  <section>
+    <p class="kicker">The link</p>
+    <h2>Does higher income mean less poverty?</h2>
+    <p>The relationship is clear: states with higher median incomes have lower poverty. The points fall along
+    a downward trend, and the East Malaysian states (orange) cluster in the low-income, high-poverty corner.</p>
+    <div class="vis" id="chart9"></div>
+  </section>
+
+  <!-- CHART 10 -->
+  <section>
+    <p class="kicker">The bottom line</p>
+    <h2>Above or below the national average</h2>
+    <p>Measuring each state against the national average makes the outliers explicit. Bars to the right have
+    above-average unemployment, Sabah, Labuan and Kelantan stand out, while the Klang Valley sits comfortably
+    below the line. Wherever you look, the same handful of states appear on the wrong side of the divide.</p>
+    <div class="vis" id="chart10"></div>
+  </section>
+
+  <footer>
+    <p><strong>By Abdullah Khan, May 2026.</strong> A Monash University Malaysia (FIT2179) project.</p>
+    <p>Data sources: Department of Statistics Malaysia (DOSM), Household Income &amp; Expenditure Survey 2022
+    (<a href="https://open.dosm.gov.my/data-catalogue/hh_income_state">income</a> and
+    <a href="https://open.dosm.gov.my/data-catalogue/hh_poverty_state">poverty</a>); DOSM Labour Force Survey,
+    3Q 2025 (<a href="https://open.dosm.gov.my/data-catalogue/lfs_qtr_state">unemployment</a>). Both CC BY 4.0.
+    State boundaries: click_that_hood project (github.com/codeforgermany/click_that_hood).</p>
+    <p>Generative AI assisted with grammar checking. The data assembly, idiom choices,
+    and design are own work.</p>
+  </footer>
+
+  <script>
+    const opts = { actions: false };
+    vegaEmbed("#chart1", "income_map.json", opts);
+    vegaEmbed("#chart2", "bubble_map.json", opts);
+    vegaEmbed("#chart3", "heatmap.json", opts);
+    vegaEmbed("#chart4", "slope.json", opts);
+    vegaEmbed("#chart5", "bump.json", opts);
+    vegaEmbed("#chart6", "streamgraph.json", opts);
+    vegaEmbed("#chart7", "boxplot.json", opts);
+    vegaEmbed("#chart8", "parallel.json", opts);
+    vegaEmbed("#chart9", "scatter.json", opts);
+    vegaEmbed("#chart10", "gap.json", opts);
+  </script>
+</body>
+</html>
